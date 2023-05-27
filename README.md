@@ -9,3 +9,6 @@ p3 - Republican - Democrat political leaning map per state (made on hexmap)
 p4 - A class exercise showing hallucinator/confuser/jumbler.
 
 
+Also, files such as hexmap.js (template where data was put in) was given by Professor Gordon Kindlmann. 
+
+
