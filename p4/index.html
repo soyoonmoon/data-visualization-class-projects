@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <!--
+  index.html: p4 html
+  Copyright (C)  2023 University of Chicago. All rights reserved.
+
+  This is only for students and instructors in the 2023 CMSC 23900 ("DataVis") class, for use in
+  that class. It is not licensed for open-source or any other kind of re-distribution. Do not allow
+  this file to be copied or downloaded by anyone outside the 2023 DataVis class.
+  -->
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+    <title>DataVis'23 p4</title>
+    <style>
+      /* v.v.v.v.v.v.v.v.v.v.v.v.v.v.v  begin student code (styling) */
+      .buttondiv {
+        text-align: center;
+      }
+      .glkdemoline {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 3px;
+      }
+      /* ^'^'^'^'^'^'^'^'^'^'^'^'^'^'^  end student code */
+    </style>
+  </head>
+
+  <body>
+    <div id="partA">
+      <!-- v.v.v.v.v.v.v.v.v.v.v.v.v.v.v  begin student code (partA html) -->
+      <h2>Hallucinator - Diamond data</h2>
+      Both map shows the diamonds in terms of carat(x-axis), price(y-axis), and color(color). Diamonds on the left side have high opacity. </br> When the opacity is high, some colors are hidden below, making it seem like certain colors are more common.</br> However, the right side has low opacity interweaved, so that when the diamond is under another diamond, we can still see it.</br> The button changes of ordering of the diamonds; the left side shows big change when the order changes while right side doesn't. 
+
+      <!-- ^'^'^'^'^'^'^'^'^'^'^'^'^'^'^  end student code -->
+    </div>
+    <div id="partB">
+      <h2>Confuser - Mortality data</h2>
+      The left map first shows the mortality data of 2020 where states with mortality rate higher than 5.5% is shown through darker blue color and mortality rate lower than 5.5% is shown
+      through lighter blue color.</br> Right map shows the more accurate mortality data ranges, with smaller than 4, 4-5, 5-5.5, 5.5-6, 6-7, 7% and higher as data ranges. </br>
+      Without specific data range, it is hard to know even when the rate increases/decreases significantly - this is shown through maps after the change is added.
+      <!-- v.v.v.v.v.v.v.v.v.v.v.v.v.v.v  begin student code (partB html) -->
+
+      <!-- ^'^'^'^'^'^'^'^'^'^'^'^'^'^'^  end student code -->
+    </div>
+    <div id="partC">
+      <h2>Jumbler - Republican vs Democrat </h2>
+      Both maps show the political leaning of each state - left side shows them through rainbow colormap and right side shows them through shades of red, blue and purple. </br>
+      Because rainbow colormap (different colors in general) are bad at expressing ratio data, even when colors change according to the change in political leaning values it is very hard for viewers to understand </br> However, mix of different shades of blue and red effectively show where the state stands. 
+      <!-- v.v.v.v.v.v.v.v.v.v.v.v.v.v.v  begin student code (partC html) -->
+
+      <!-- ^'^'^'^'^'^'^'^'^'^'^'^'^'^'^  end student code -->
+    </div>
+  </body>
+
+  <script type="module">
+    import { d3, parm, glob } from './common.js';
+    // uncomment only ONE of the following TWO lines (TODO: try the second)
+    import * as p4 from './p4.js'; // normal usage
+    // import * as p4 from './p4-glk.js'; // for trying out (obfuscated) p4.js from GLK
+    /* IF using p4-glk.js: also change below from:
+      ['hexRC'].map((fn) =>
+    to:
+      ['m100m', 'hexRC'].map((fn) =>
+    so that partA can work with the 100-meter dash record data.
+    ALSO, you'll have to copy datavis23/data/m100m.csv into the local "data" folder.
+    As noted in README.md, any data you use in your final project, which you had to
+    copy into the "data" folder here, needs to be "svn add"d and "svn commit"d.
+    */
+    // v.v.v.v.v.v.v.v.v.v.v.v.v.v.v  begin student code (js code)
+    Promise.all(
+      // more datasets could be added here (like they were in p3)
+      ['mortality','hexRC','diamonds','candidateNames','stateNames', 'votes'].map((fn) => d3.csv(`./data/${fn}.csv`)
+      .then((data) => (glob.csvData[fn] = data)))
+    ).then(() => {
+      // at this point all data has been read in
+      p4.setup();
+    });
+    window.hack = {
+      d3,
+      parm,
+      glob,
+    };
+    // ^'^'^'^'^'^'^'^'^'^'^'^'^'^'^  end student code
+  </script>
+</html>
