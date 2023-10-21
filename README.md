@@ -5,7 +5,9 @@ He was quite skilled at changing colors, which are my weak points - but I contri
 small details like tool tip.
 
 p2 - nightingale visualization project
+
 p3 - Republican - Democrat political leaning map per state (made on hexmap)
+
 p4 - A class exercise showing hallucinator/confuser/jumbler.
 
 
